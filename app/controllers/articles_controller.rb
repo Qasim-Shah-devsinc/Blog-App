@@ -3,7 +3,13 @@ class ArticlesController < ApplicationController
   http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
 
   def index
+    if params[:status] == "activated"
+      render plain: params[:status].inspect
+    else
+      s = 1
+    end
     @articles = Article.all
+    @books = Book.all
   end
 
   def new
