@@ -24,6 +24,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
 
     if @article.save
+      SendMailMailer.send_mail.deliver_now
       redirect_to @article
     else
       render 'new'
