@@ -3,7 +3,13 @@ class ArticlesController < ApplicationController
   http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
 
   def index
+    if params[:status] == "activated"
+      render plain: params[:status].inspect
+    else
+      s = 1
+    end
     @articles = Article.all
+    @books = Book.all
   end
 
   def new
@@ -15,9 +21,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    ArticleTestJob.perform_later(article_params)
     @article = Article.new(article_params)
-
     if @article.save
+      # SendMailMailer.send_mail.deliver_now
       redirect_to @article
     else
       render 'new'
@@ -47,6 +54,6 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, :text)
+    params.require(:article).permit(:title)
   end
 end
