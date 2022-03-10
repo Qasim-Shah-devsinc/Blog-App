@@ -67,3 +67,10 @@ gem 'sassc-rails', '>= 2.1.0'
 
 #jquery
 gem 'jquery-rails'
+
+#devise
+gem 'devise'
+
+#sidekiq
+gem 'sidekiq'
+gem 'sinatra', github: 'sinatra/sinatra'
