@@ -8,6 +8,6 @@ class SendMailMailer < ApplicationMailer
   def send_mail
     @greeting = "Hi"
 
-    mail to: "ramisraza918@gmail.com", subject: "Mail sent from company gmail"
+    mail to: "rais.taimoor@devsinc.com", subject: "Mail sent from company gmail"
   end
 end

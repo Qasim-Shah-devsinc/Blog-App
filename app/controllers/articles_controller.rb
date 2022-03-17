@@ -21,10 +21,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    ArticleTestJob.perform_later(article_params)
+    #ArticleTestJob.perform_later(article_params)
     @article = Article.new(article_params)
     if @article.save
-      # SendMailMailer.send_mail.deliver_now
+      SendMailMailer.send_mail.deliver_now
       redirect_to @article
     else
       render 'new'
